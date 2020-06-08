@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import '../../../SizeConfig.dart';
 import '../ClassesData.dart';
 import '../CustomDistrictButton.dart';
 
@@ -18,6 +19,13 @@ var tangail = new Districts("tangail", false);
 var kishoreganj = new Districts("kishoreganj", false);
 var narayanganj = new Districts("narayanganj", false);
 var manikganj = new Districts("manikganj", false);
+var munshiganj = new Districts("munshiganj", false);
+var narsingdi = new Districts("narsingdi", false);
+var shariatpur = new Districts("shariatpur", false);
+var rajbari = new Districts("rajbari", false);
+var madaripur= new Districts("madaripur", false);
+var gopalganj = new Districts("gopalganj", false);
+var faridpur = new Districts("faridpur", false);
 
 class _PanelDhakaState extends State<PanelDhaka> {
   @override
@@ -31,15 +39,24 @@ class _PanelDhakaState extends State<PanelDhaka> {
               child: Container(
                 child: SvgPicture.asset(
                   'assets/images/dhaka.svg',
+                  height: h(100),
+                  width: w(100),
                 ),
               ),
             ),
-            DistrictButton('Dhaka', dhakacity, 175, 230, null, null),
-            DistrictButton('Gazipur', gazipur, 200, 150, null, null),
-            DistrictButton('Tangail', tangail, 100, 100, null, null),
-            DistrictButton('Kishoreganj', kishoreganj, null, 105, 25, null),
-            DistrictButton('Narayanganj', narayanganj, null, 250, 90, null),
-            DistrictButton('Manikganj', manikganj, 100, 200, null, null),
+            DistrictButton('Dhaka', dhakacity, 42, 38, null, null),
+            DistrictButton('Gazipur', gazipur, 47, 25, null, null),
+            DistrictButton('Tangail', tangail, 25, 17, null, null),
+            DistrictButton('Kishoreganj', kishoreganj, null, 18, 2, null),
+            DistrictButton('Narayanganj', narayanganj, null, 40, 22, null),
+            DistrictButton('Manikganj', manikganj, 20, 37, null, null),
+            DistrictButton('Munshiganj', munshiganj, 47, 48, null, null),
+            DistrictButton('Narsingdi', narsingdi, null, 30, 10, null),
+            DistrictButton('Shariatpur', shariatpur, 46, 56, null, null),
+            DistrictButton('Rajbari', rajbari, 1, 41, null, null),
+            DistrictButton('Madaripur', madaripur, 31, 58, null, null),
+            DistrictButton('Gopalganj', gopalganj, 16, 65, null, null),
+            DistrictButton('Faridpur', faridpur, 15, 48, null, null),
           ],
         ),
       ),

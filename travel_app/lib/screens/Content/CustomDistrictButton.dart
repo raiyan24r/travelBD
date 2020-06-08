@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import '../../SizeConfig.dart';
 
-
-class DistrictButton extends StatefulWidget {
+ class DistrictButton extends StatefulWidget {
   final String name;
-  var disName;
+   var disName;
   final double top;
   final double left;
   final double right;
@@ -20,10 +20,10 @@ class _DistrictButtonState extends State<DistrictButton> {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      top: widget.top,
-      left: widget.left,
-      right:widget.right,
-      bottom:widget.bottom,
+      top: h(widget.top),
+      left:w(widget.left),
+      right:w(widget.right),
+      bottom:h(widget.bottom),
       child: Container(
         child: Column(children: <Widget>[
           SizedBox(

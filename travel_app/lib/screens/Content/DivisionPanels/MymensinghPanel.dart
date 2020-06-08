@@ -11,7 +11,7 @@ class PanelMymensingh extends StatefulWidget {
 }
 
 var mymensinghcity = new Districts("mymensingh", false);
-// TODO: Add class for each district here
+
 //      example : var *classname* = new Districts("*districtname", false);
 
 class _PanelMymensinghState extends State<PanelMymensingh> {
@@ -25,7 +25,7 @@ class _PanelMymensinghState extends State<PanelMymensingh> {
             'assets/images/mymensingh.svg',
           ),
           DistrictButton('MYMENSINGH', mymensinghcity, null, null, 110, 200),
-          // TODO: Add buttons 
+          
           //DistrictButton('*jei text boshbe', upore classname jeita disi, left theke distance, top, right, bottom),
         ],
       )),

@@ -1,14 +1,17 @@
 
 
+
 class Division {
   
   String divName;
   int totalDistrics;
-  int visitedDistricts;
+  int visitedDistricts=0;
+ 
 
 
 
 }
+
 
 
 class Districts{
@@ -25,6 +28,9 @@ cityname.isVisited=!cityname.isVisited;
 return cityname.isVisited;
 }
 }
+
+
+
 
 
 
