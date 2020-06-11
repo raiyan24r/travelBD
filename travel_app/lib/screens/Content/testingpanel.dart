@@ -8,6 +8,17 @@ import '../../SizeConfig.dart';
 import 'ClassesData.dart';
 import 'DivisionPanels/SlidingPanelDivisions.dart';
 
+
+ var ctgDiv = Division();
+  var dhakaDiv = Division();
+  var sylhetDiv = Division();
+  var khulnaDiv = Division();
+  var rangpurDiv = Division();
+  var rajshahiDiv = Division();
+  var mymensinghDiv = Division();
+  var barishalDiv = Division();
+
+  
 class HomeMap extends StatefulWidget {
   HomeMap({Key key}) : super(key: key);
 
@@ -26,7 +37,7 @@ class _HomeMapState extends State<HomeMap> {
       print('SignOut');
     }
   }
-
+int widthThreshold=470;
   void updateIndex(int index) {
     setState(() {
       print(_pc.isAttached.toString());
@@ -35,14 +46,7 @@ class _HomeMapState extends State<HomeMap> {
     });
   }
 
-  var ctgDiv = Division();
-  var dhakaDiv = Division();
-  var sylhetDiv = Division();
-  var khulnaDiv = Division();
-  var rangpurDiv = Division();
-  var rajshahiDiv = Division();
-  var mymensinghDiv = Division();
-  var barishalDiv = Division();
+ 
   int divIndex = 2;
   @override
   Widget build(BuildContext context) {
@@ -82,17 +86,16 @@ class _HomeMapState extends State<HomeMap> {
           ),
           backdropEnabled: true,
           minHeight: h(1),
-          maxHeight: (w(95)*1.30)*0.90,
+          maxHeight: h(75),
           controller: _pc,
-           panel: Center(
-                    child: divListPanel[divIndex],
-                  ),
-          body:Center(
-            
-            child: Padding(
-              padding: const EdgeInsets.only(bottom:100),
-              child: _body(),
-            )),
+          panel: Center(
+            child: divListPanel[divIndex],
+          ),
+          body: Center(
+              child: Padding(
+            padding: const EdgeInsets.only(bottom: 100),
+            child: _body(),
+          )),
         ),
         drawer: Drawer(
           child: ListView(
@@ -197,8 +200,8 @@ class _HomeMapState extends State<HomeMap> {
           ),
           // ANCHOR Ctg
           Positioned(
-            bottom: (w(95) * 1.30) *0.2,
-            right: w(-2),
+            bottom: (w(95) * 1.30) * 0.2,
+            right: w(100)<widthThreshold? w(-2):w(-2),
             child: FlatButton(
               onPressed: () => {updateIndex(2)},
               child: Column(children: <Widget>[
@@ -223,7 +226,7 @@ class _HomeMapState extends State<HomeMap> {
                         "${ctgDiv.visitedDistricts}/8",
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: h(100) *0.02,
+                          fontSize: h(100) * 0.02,
                         ),
                       ),
                     ))
@@ -233,8 +236,8 @@ class _HomeMapState extends State<HomeMap> {
           //  ANCHOR Barishal
           Positioned(
             //Barishal
-            bottom: (w(95)*1.30) *0.24,
-            right: w(95)*0.35,
+            bottom: (w(95) * 1.30) * 0.24,
+            right:w(100)<widthThreshold? w(95) * 0.35:w(95) * 0.37,
             child: FlatButton(
               onPressed: () => {updateIndex(3)},
               child: Column(
@@ -242,7 +245,7 @@ class _HomeMapState extends State<HomeMap> {
                   Text(
                     "BARISHAL",
                     style: TextStyle(
-                        fontSize: h(100)*.02,
+                        fontSize: h(100) * .02,
                         color: Colors.orange[900],
                         fontWeight: FontWeight.w900),
                   ),
@@ -263,7 +266,7 @@ class _HomeMapState extends State<HomeMap> {
                         "${barishalDiv.visitedDistricts}/8",
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: h(100)*0.02,
+                          fontSize: h(100) * 0.02,
                         ),
                       ),
                     ),
@@ -275,15 +278,15 @@ class _HomeMapState extends State<HomeMap> {
           // ANCHOR Khulna
           Positioned(
             //Khulna
-            bottom: (w(95)*1.30)*0.3,
-            left: w(95)*0.17,
+            bottom: (w(95) * 1.30) * 0.3,
+            left: w(100)<widthThreshold?w(95) * 0.17:w(95) * 0.19,
             child: FlatButton(
               onPressed: () => {updateIndex(4)},
               child: Column(children: <Widget>[
                 Text(
                   "KHULNA",
                   style: TextStyle(
-                      fontSize: h(100)*0.02,
+                      fontSize: h(100) * 0.02,
                       color: Colors.green[900],
                       fontWeight: FontWeight.w900),
                 ),
@@ -298,13 +301,13 @@ class _HomeMapState extends State<HomeMap> {
                     ),
                   ),
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 7, vertical: 2),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
                     child: Text(
                       "${khulnaDiv.visitedDistricts}/8",
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: h(100)*0.02,
+                        fontSize: h(100) * 0.02,
                       ),
                     ),
                   ),
@@ -315,8 +318,8 @@ class _HomeMapState extends State<HomeMap> {
           // ANCHOR Dhaka
           Positioned(
             //Dhaka
-            bottom: (w(95)*1.30) *0.45,
-            left: w(95)*0.35,
+            bottom: (w(95) * 1.30) * 0.46,
+            left: w(100)<widthThreshold? w(95) * 0.35:w(95) * 0.37,
             child: FlatButton(
               onPressed: () => {
                 updateIndex(1),
@@ -325,7 +328,7 @@ class _HomeMapState extends State<HomeMap> {
                 Text(
                   "DHAKA",
                   style: TextStyle(
-                      fontSize: h(100)*0.02,
+                      fontSize: h(100) * 0.02,
                       color: Colors.pink[900],
                       fontWeight: FontWeight.w900),
                 ),
@@ -340,13 +343,13 @@ class _HomeMapState extends State<HomeMap> {
                     ),
                   ),
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 7, vertical: 2),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
                     child: Text(
                       "${dhakaDiv.visitedDistricts}/8",
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: h(100)*0.02,
+                        fontSize: h(100) * 0.02,
                       ),
                     ),
                   ),
@@ -357,15 +360,15 @@ class _HomeMapState extends State<HomeMap> {
           // ANCHOR Mymensingh
           Positioned(
             // Mymensingh
-            top: (w(95)*1.30) *0.25,
-            left: w(95)*0.32,
+            top: (w(95) * 1.30) * 0.25,
+            left: w(100)<widthThreshold? (w(95) * 0.32):(w(95) * 0.34),
             child: FlatButton(
               onPressed: () => {updateIndex(7)},
               child: Column(children: <Widget>[
                 Text(
                   "MYMENSINGH",
                   style: TextStyle(
-                      fontSize: h(100)*0.02,
+                      fontSize: h(100) * 0.02,
                       color: Colors.red[900],
                       fontWeight: FontWeight.w900),
                 ),
@@ -380,13 +383,13 @@ class _HomeMapState extends State<HomeMap> {
                     ),
                   ),
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 7, vertical: 2),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
                     child: Text(
                       "${mymensinghDiv.visitedDistricts}/3",
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: h(100)*0.020,
+                        fontSize: h(100) * 0.020,
                       ),
                     ),
                   ),
@@ -398,15 +401,15 @@ class _HomeMapState extends State<HomeMap> {
           Positioned(
             //Sylhet
 
-            top: (w(95)*1.30)*0.28,
-            right: w(95)*0.1,
+            top: (w(95) * 1.30) * 0.28,
+            right:w(100)<widthThreshold? w(95) * 0.1:w(95) * 0.15,
             child: FlatButton(
               onPressed: () => {updateIndex(0)},
               child: Column(children: <Widget>[
                 Text(
                   "SYLHET",
                   style: TextStyle(
-                      fontSize: h(100)*0.02,
+                      fontSize: h(100) * 0.02,
                       color: Colors.deepOrange[900],
                       fontWeight: FontWeight.w900),
                 ),
@@ -421,13 +424,13 @@ class _HomeMapState extends State<HomeMap> {
                     ),
                   ),
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 7, vertical: 2),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
                     child: Text(
                       "${sylhetDiv.visitedDistricts}/3",
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: h(100)*0.020,
+                        fontSize: h(100) * 0.020,
                       ),
                     ),
                   ),
@@ -461,13 +464,13 @@ class _HomeMapState extends State<HomeMap> {
                     ),
                   ),
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 7, vertical: 2),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
                     child: Text(
                       "${rangpurDiv.visitedDistricts}/3",
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: h(100)*0.02,
+                        fontSize: h(100) * 0.02,
                       ),
                     ),
                   ),
@@ -478,15 +481,15 @@ class _HomeMapState extends State<HomeMap> {
           // ANCHOR Rajshahi
           Positioned(
             //Rajshahi
-            top: (w(95)*1.30)*0.3,
-            left: w(95)*0.08,
+            top: (w(95) * 1.30) * 0.3,
+            left: w(95) * 0.08,
             child: FlatButton(
               onPressed: () => {updateIndex(5)},
               child: Column(children: <Widget>[
                 Text(
                   "RAJSHAHI",
                   style: TextStyle(
-                      fontSize: h(100)*0.02,
+                      fontSize: h(100) * 0.02,
                       color: Colors.lightBlue[800],
                       fontWeight: FontWeight.w900),
                 ),
@@ -501,13 +504,13 @@ class _HomeMapState extends State<HomeMap> {
                     ),
                   ),
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 7, vertical: 2),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
                     child: Text(
                       "${rajshahiDiv.visitedDistricts}/3",
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: h(100)*0.02,
+                        fontSize: h(100) * 0.02,
                       ),
                     ),
                   ),

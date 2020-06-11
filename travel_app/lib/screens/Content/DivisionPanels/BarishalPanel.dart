@@ -23,7 +23,7 @@ class _PanelBarishalState extends State<PanelBarishal> {
           SvgPicture.asset(
             'assets/images/barishal.svg',
           ),
-          DistrictButton('Barishal', barishalcity, null, 100, 170, null),
+         // DistrictButton('Barishal', barishalcity, null, 100, 170, null),
         ],
       )),
     );

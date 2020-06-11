@@ -25,7 +25,7 @@ class _PanelRajshahiState extends State<PanelRajshahi> {
           SvgPicture.asset(
             'assets/images/rajshahi.svg',
           ),
-          DistrictButton('RAJSHAHI', rajshahicity, 110, null, null, 190),
+          //DistrictButton('RAJSHAHI', rajshahicity, 110, null, null, 190),
         ],
       )),
     );

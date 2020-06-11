@@ -21,7 +21,7 @@ class _PanelRangpurState extends State<PanelRangpur> {
           SvgPicture.asset(
             'assets/images/rangpur.svg',
           ),
-          DistrictButton('RANGPUR', rangpurcity, null, null, 110, 200),
+          //DistrictButton('RANGPUR', rangpurcity, null, null, 110, 200),
         ],
       )),
     );

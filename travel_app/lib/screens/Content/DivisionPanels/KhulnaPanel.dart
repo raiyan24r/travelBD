@@ -22,7 +22,7 @@ class _PanelKhulnaState extends State<PanelKhulna> {
           SvgPicture.asset(
             'assets/images/khulna.svg',
           ),
-          DistrictButton('KHULNA', khulnacity, null, null, 125, 150),
+          //DistrictButton('KHULNA', khulnacity, null, null, 125, 150),
         ],
       )),
     );

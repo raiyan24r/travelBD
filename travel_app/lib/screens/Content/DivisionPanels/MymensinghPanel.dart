@@ -24,7 +24,7 @@ class _PanelMymensinghState extends State<PanelMymensingh> {
           SvgPicture.asset(
             'assets/images/mymensingh.svg',
           ),
-          DistrictButton('MYMENSINGH', mymensinghcity, null, null, 110, 200),
+          //DistrictButton('MYMENSINGH', mymensinghcity, null, null, 110, 200),
           
           //DistrictButton('*jei text boshbe', upore classname jeita disi, left theke distance, top, right, bottom),
         ],
