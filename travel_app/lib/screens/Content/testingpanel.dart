@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 import 'package:travel_app/main.dart';
@@ -8,17 +10,18 @@ import '../../SizeConfig.dart';
 import 'ClassesData.dart';
 import 'DivisionPanels/SlidingPanelDivisions.dart';
 
+int divIndex = 2;
 
- var ctgDiv = Division();
-  var dhakaDiv = Division();
-  var sylhetDiv = Division();
-  var khulnaDiv = Division();
-  var rangpurDiv = Division();
-  var rajshahiDiv = Division();
-  var mymensinghDiv = Division();
-  var barishalDiv = Division();
+var ctgDIV = Division(11);
+var dhakaDIV = Division(13);
+var sylhetDIV = Division(4);
+var khulnaDIV = Division(10);
 
-  
+var rangpurDIV = Division(8);
+var rajshahiDIV = Division(8);
+var mymensinghDIV = Division(4);
+var barishalDIV = Division(6);
+
 class HomeMap extends StatefulWidget {
   HomeMap({Key key}) : super(key: key);
 
@@ -37,7 +40,8 @@ class _HomeMapState extends State<HomeMap> {
       print('SignOut');
     }
   }
-int widthThreshold=470;
+
+  int widthThreshold = 470;
   void updateIndex(int index) {
     setState(() {
       print(_pc.isAttached.toString());
@@ -46,8 +50,6 @@ int widthThreshold=470;
     });
   }
 
- 
-  int divIndex = 2;
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -88,8 +90,28 @@ int widthThreshold=470;
           minHeight: h(1),
           maxHeight: h(75),
           controller: _pc,
-          panel: Center(
-            child: divListPanel[divIndex],
+          panel: Container(
+            
+            //color: Colors.red,
+            child: Stack(
+              children: <Widget>[
+                Align(
+                  alignment: Alignment(0,-1.05),
+                  child: FlatButton(
+                    onPressed: () {
+                      setState(() {
+                        _pc.close();
+                      });
+                    },
+                    child: Icon(Icons.keyboard_arrow_down,size:40),
+                  ),
+                ),
+                Align(
+                    alignment: Alignment.center,
+                    child: divListPanel[divIndex]),
+                
+              ],
+            ),
           ),
           body: Center(
               child: Padding(
@@ -173,9 +195,10 @@ int widthThreshold=470;
 
   Widget _body() {
     return Container(
-      width: w(95),
+      width: w(100) < 500 ? w(95) : w(80),
 
-      height: w(96.5) * 1.30,
+      height: w(100) < 500 ? w(96.5) * 1.30 : w(85) * 1.30,
+      padding: EdgeInsets.all(10),
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
@@ -183,8 +206,8 @@ int widthThreshold=470;
           ),
           BoxShadow(
             color: Colors.white,
-            spreadRadius: -1.0,
-            blurRadius: 1.0,
+            spreadRadius: -2.0,
+            blurRadius: 2.0,
           ),
         ],
       ),
@@ -194,60 +217,76 @@ int widthThreshold=470;
           Center(
             child: SvgPicture.asset(
               'assets/images/BDMapv2.svg',
-              width: w(95),
-              height: w(95) * 1.30,
+              // width: w(95),
+              // height: w(95) * 1.30,
             ),
           ),
           // ANCHOR Ctg
-          Positioned(
-            bottom: (w(95) * 1.30) * 0.2,
-            right: w(100)<widthThreshold? w(-2):w(-2),
+          Align(
+            alignment: Alignment(1.1, 0.55),
             child: FlatButton(
               onPressed: () => {updateIndex(2)},
-              child: Column(children: <Widget>[
-                Text(
-                  "CHITTAGONG",
-                  style: TextStyle(
-                      fontSize: h(100) * 0.02,
-                      color: Colors.blue[900],
-                      fontWeight: FontWeight.w900),
-                ),
-                Container(
-                    decoration: BoxDecoration(
-                        border: Border.all(
-                          color: Colors.blue[900],
-                        ),
-                        color: Colors.blue,
-                        borderRadius: BorderRadius.all(Radius.circular(20))),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 7, vertical: 2),
-                      child: Text(
-                        "${ctgDiv.visitedDistricts}/8",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: h(100) * 0.02,
-                        ),
+              child: Wrap(
+                  direction: Axis.vertical,
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      "CHITTAGONG",
+                      style: GoogleFonts.raleway(
+                        textStyle: TextStyle(
+                            color: Colors.blue[900],
+                            fontSize: h(100) * 0.02,
+                            fontWeight: FontWeight.w700),
                       ),
-                    ))
-              ]),
+                    ),
+                    Container(
+                        decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.blue[900],
+                            ),
+                            color: Colors.blue,
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(20))),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 7, vertical: 1),
+                          child: Consumer<ProviderDivision>(
+                            builder: (context, ctgDiv, child) {
+                              ctgDIV.visitedDistricts =
+                                  ctgDiv.ctgVisitedDistricts;
+
+                              return Text(
+                                '${ctgDiv.ctgVisitedDistricts}/${ctgDIV.totalDistricts}',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: h(100) * 0.02,
+                                    fontWeight: FontWeight.w600),
+                              );
+                            },
+                          ),
+                        ))
+                  ]),
             ),
           ),
           //  ANCHOR Barishal
-          Positioned(
+          Align(
             //Barishal
-            bottom: (w(95) * 1.30) * 0.24,
-            right:w(100)<widthThreshold? w(95) * 0.35:w(95) * 0.37,
+            alignment: Alignment(0, 0.48),
             child: FlatButton(
               onPressed: () => {updateIndex(3)},
-              child: Column(
+              child: Wrap(
+                direction: Axis.vertical,
+                crossAxisAlignment: WrapCrossAlignment.center,
                 children: <Widget>[
                   Text(
                     "BARISHAL",
-                    style: TextStyle(
-                        fontSize: h(100) * .02,
-                        color: Colors.orange[900],
-                        fontWeight: FontWeight.w900),
+                    style: GoogleFonts.raleway(
+                      textStyle: TextStyle(
+                        color: Colors.deepOrange[800],
+                        fontSize: h(100) * 0.02,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
                   ),
                   Container(
                     decoration: BoxDecoration(
@@ -261,14 +300,19 @@ int widthThreshold=470;
                     ),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 7, vertical: 2),
-                      child: Text(
-                        "${barishalDiv.visitedDistricts}/8",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: h(100) * 0.02,
-                        ),
-                      ),
+                          horizontal: 7, vertical: 1),
+                      child: Consumer<ProviderDivision>(
+                          builder: (context, barishalDiv, child) {
+                        barishalDIV.visitedDistricts =
+                            barishalDiv.barishalVisitedDistricts;
+                        return Text(
+                          "${barishalDiv.barishalVisitedDistricts}/${barishalDIV.totalDistricts}",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: h(100) * 0.02,
+                          ),
+                        );
+                      }),
                     ),
                   ),
                 ],
@@ -276,246 +320,310 @@ int widthThreshold=470;
             ),
           ),
           // ANCHOR Khulna
-          Positioned(
-            //Khulna
-            bottom: (w(95) * 1.30) * 0.3,
-            left: w(100)<widthThreshold?w(95) * 0.17:w(95) * 0.19,
+          Align(
+            alignment: Alignment(-0.58, 0.3),
             child: FlatButton(
               onPressed: () => {updateIndex(4)},
-              child: Column(children: <Widget>[
-                Text(
-                  "KHULNA",
-                  style: TextStyle(
-                      fontSize: h(100) * 0.02,
-                      color: Colors.green[900],
-                      fontWeight: FontWeight.w900),
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Colors.black,
-                    ),
-                    color: Colors.green[900],
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(20),
-                    ),
-                  ),
-                  child: Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
-                    child: Text(
-                      "${khulnaDiv.visitedDistricts}/8",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: h(100) * 0.02,
+              child: Wrap(
+                  direction: Axis.vertical,
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      "KHULNA",
+                      style: GoogleFonts.raleway(
+                        textStyle: TextStyle(
+                          color: Colors.green[800],
+                          fontSize: h(100) * 0.02,
+                          fontWeight: FontWeight.w700,
+                        ),
                       ),
                     ),
-                  ),
-                ),
-              ]),
+                    Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.black,
+                        ),
+                        color: Colors.green[900],
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(20),
+                        ),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 7, vertical: 1),
+                        child: Consumer<ProviderDivision>(
+                            builder: (context, khulnaDiv, child) {
+                          khulnaDIV.visitedDistricts =
+                              khulnaDiv.khulnaVisitedDistricts;
+
+                          return Text(
+                            "${khulnaDiv.khulnaVisitedDistricts}/${khulnaDIV.totalDistricts}",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: h(100) * 0.02,
+                            ),
+                          );
+                        }),
+                      ),
+                    ),
+                  ]),
             ),
           ),
           // ANCHOR Dhaka
-          Positioned(
+          Align(
             //Dhaka
-            bottom: (w(95) * 1.30) * 0.46,
-            left: w(100)<widthThreshold? w(95) * 0.35:w(95) * 0.37,
+            alignment: Alignment(-0.1, -0.05),
             child: FlatButton(
               onPressed: () => {
                 updateIndex(1),
               },
-              child: Column(children: <Widget>[
-                Text(
-                  "DHAKA",
-                  style: TextStyle(
-                      fontSize: h(100) * 0.02,
-                      color: Colors.pink[900],
-                      fontWeight: FontWeight.w900),
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Colors.black,
-                    ),
-                    color: Colors.pink[900],
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(20),
-                    ),
-                  ),
-                  child: Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
-                    child: Text(
-                      "${dhakaDiv.visitedDistricts}/8",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: h(100) * 0.02,
+              child: Wrap(
+                  direction: Axis.vertical,
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      "DHAKA",
+                      style: GoogleFonts.raleway(
+                        textStyle: TextStyle(
+                          color: Colors.pink[800],
+                          fontSize: h(100) * 0.02,
+                          fontWeight: FontWeight.w700,
+                        ),
                       ),
                     ),
-                  ),
-                ),
-              ]),
+                    Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.black,
+                        ),
+                        color: Colors.pink[900],
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(20),
+                        ),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 7, vertical: 1),
+                        child: Consumer<ProviderDivision>(
+                            builder: (context, dhakaDiv, child) {
+                          dhakaDIV.visitedDistricts =
+                              dhakaDiv.khulnaVisitedDistricts;
+
+                          return Text(
+                            "${dhakaDiv.dhakaVisitedDistricts}/${dhakaDIV.totalDistricts}",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: h(100) * 0.02,
+                            ),
+                          );
+                        }),
+                      ),
+                    ),
+                  ]),
             ),
           ),
           // ANCHOR Mymensingh
-          Positioned(
+          Align(
             // Mymensingh
-            top: (w(95) * 1.30) * 0.25,
-            left: w(100)<widthThreshold? (w(95) * 0.32):(w(95) * 0.34),
+            alignment: Alignment(0, -0.47),
             child: FlatButton(
               onPressed: () => {updateIndex(7)},
-              child: Column(children: <Widget>[
-                Text(
-                  "MYMENSINGH",
-                  style: TextStyle(
-                      fontSize: h(100) * 0.02,
-                      color: Colors.red[900],
-                      fontWeight: FontWeight.w900),
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Colors.black,
-                    ),
-                    color: Colors.red[900],
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(20),
-                    ),
-                  ),
-                  child: Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
-                    child: Text(
-                      "${mymensinghDiv.visitedDistricts}/3",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: h(100) * 0.020,
+              child: Wrap(
+                  direction: Axis.vertical,
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      "MYMENSINGH",
+                      style: GoogleFonts.raleway(
+                        textStyle: TextStyle(
+                          color: Colors.red[800],
+                          fontSize: h(100) * 0.02,
+                          fontWeight: FontWeight.w700,
+                        ),
                       ),
                     ),
-                  ),
-                ),
-              ]),
+                    Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.black,
+                        ),
+                        color: Colors.red[900],
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(20),
+                        ),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 7, vertical: 1),
+                        child: Consumer<ProviderDivision>(
+                            builder: (context, mymensinghDiv, child) {
+                          mymensinghDIV.visitedDistricts =
+                              mymensinghDiv.mymensinghVisitedDistricts;
+
+                          return Text(
+                            "${mymensinghDIV.visitedDistricts}/${mymensinghDIV.totalDistricts}",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: h(100) * 0.02,
+                            ),
+                          );
+                        }),
+                      ),
+                    ),
+                  ]),
             ),
           ),
           // ANCHOR Sylhet
-          Positioned(
+          Align(
             //Sylhet
-
-            top: (w(95) * 1.30) * 0.28,
-            right:w(100)<widthThreshold? w(95) * 0.1:w(95) * 0.15,
+            alignment: Alignment(.74, -0.4),
             child: FlatButton(
               onPressed: () => {updateIndex(0)},
-              child: Column(children: <Widget>[
-                Text(
-                  "SYLHET",
-                  style: TextStyle(
-                      fontSize: h(100) * 0.02,
-                      color: Colors.deepOrange[900],
-                      fontWeight: FontWeight.w900),
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Colors.black,
-                    ),
-                    color: Colors.orange[900],
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(20),
-                    ),
-                  ),
-                  child: Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
-                    child: Text(
-                      "${sylhetDiv.visitedDistricts}/3",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: h(100) * 0.020,
+              child: Wrap(
+                  direction: Axis.vertical,
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      "SYLHET",
+                      style: GoogleFonts.raleway(
+                        textStyle: TextStyle(
+                          color: Colors.deepOrange[800],
+                          fontSize: h(100) * 0.02,
+                          fontWeight: FontWeight.w700,
+                        ),
                       ),
                     ),
-                  ),
-                ),
-              ]),
+                    Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.black,
+                        ),
+                        color: Colors.orange[900],
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(20),
+                        ),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 7, vertical: 1),
+                        child: Consumer<ProviderDivision>(
+                            builder: (context, sylhetDiv, child) {
+                          sylhetDIV.visitedDistricts =
+                              sylhetDiv.mymensinghVisitedDistricts;
+
+                          return Text(
+                            "${sylhetDIV.visitedDistricts}/${sylhetDIV.totalDistricts}",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: h(100) * 0.02,
+                            ),
+                          );
+                        }),
+                      ),
+                    ),
+                  ]),
             ),
           ),
           // ANCHOR Rangpur
-          Positioned(
+          Align(
             //Rangpur
-            top: (w(95) * 1.30) * 0.12,
-            left: w(95) * .12,
+            alignment: Alignment(-0.66, -0.77),
             child: FlatButton(
               onPressed: () => {updateIndex(6)},
-              child: Column(children: <Widget>[
-                Text(
-                  "RANGPUR",
-                  style: TextStyle(
-                      fontSize: h(100) * .02,
-                      color: Colors.lime[800],
-                      fontWeight: FontWeight.w900),
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Colors.black,
-                    ),
-                    color: Colors.lime[900],
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(20),
-                    ),
-                  ),
-                  child: Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
-                    child: Text(
-                      "${rangpurDiv.visitedDistricts}/3",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: h(100) * 0.02,
+              child: Wrap(
+                  direction: Axis.vertical,
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      "RANGPUR",
+                      style: GoogleFonts.raleway(
+                        textStyle: TextStyle(
+                          color: Colors.lime[800],
+                          fontSize: h(100) * 0.02,
+                          fontWeight: FontWeight.w700,
+                        ),
                       ),
                     ),
-                  ),
-                ),
-              ]),
+                    Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.black,
+                        ),
+                        color: Colors.lime[900],
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(20),
+                        ),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 7, vertical: 1),
+                        child: Consumer<ProviderDivision>(
+                            builder: (context, rangpurDiv, child) {
+                          rangpurDIV.visitedDistricts =
+                              rangpurDiv.mymensinghVisitedDistricts;
+
+                          return Text(
+                            "${rangpurDIV.visitedDistricts}/${rangpurDIV.totalDistricts}",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: h(100) * 0.02,
+                            ),
+                          );
+                        }),
+                      ),
+                    ),
+                  ]),
             ),
           ),
           // ANCHOR Rajshahi
-          Positioned(
+          Align(
             //Rajshahi
-            top: (w(95) * 1.30) * 0.3,
-            left: w(95) * 0.08,
+            alignment: Alignment(-0.72, -0.34),
             child: FlatButton(
               onPressed: () => {updateIndex(5)},
-              child: Column(children: <Widget>[
-                Text(
-                  "RAJSHAHI",
-                  style: TextStyle(
-                      fontSize: h(100) * 0.02,
-                      color: Colors.lightBlue[800],
-                      fontWeight: FontWeight.w900),
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Colors.black,
-                    ),
-                    color: Colors.blue[900],
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(20),
-                    ),
-                  ),
-                  child: Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
-                    child: Text(
-                      "${rajshahiDiv.visitedDistricts}/3",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: h(100) * 0.02,
+              child: Wrap(
+                  direction: Axis.vertical,
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      "RAJSHAHI",
+                      style: GoogleFonts.raleway(
+                        textStyle: TextStyle(
+                          color: Colors.lightBlue[900],
+                          fontSize: h(100) * 0.02,
+                          fontWeight: FontWeight.w700,
+                        ),
                       ),
                     ),
-                  ),
-                ),
-              ]),
+                    Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.black,
+                        ),
+                        color: Colors.blue[900],
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(20),
+                        ),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 7, vertical: 1),
+                        child: Consumer<ProviderDivision>(
+                            builder: (context, rajshahiDiv, child) {
+                          rajshahiDIV.visitedDistricts =
+                              rajshahiDiv.mymensinghVisitedDistricts;
+
+                          return Text(
+                            "${rajshahiDIV.visitedDistricts}/${rajshahiDIV.totalDistricts}",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: h(100) * 0.02,
+                            ),
+                          );
+                        }),
+                      ),
+                    ),
+                  ]),
             ),
           ),
         ],

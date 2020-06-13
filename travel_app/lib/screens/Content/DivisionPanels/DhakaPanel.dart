@@ -31,20 +31,33 @@ class _PanelDhakaState extends State<PanelDhaka> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: h(67) * .95,
+        width: h(67) * .95 * .8,
+      decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black45,
+          ),
+          BoxShadow(
+            color: Colors.white,
+            spreadRadius: -1.0,
+            blurRadius: 1.0,
+          ),
+        ],
+      ),
       child: Center(
         child: Stack(
           children: <Widget>[
             Transform.scale(
-              scale: 1.2,
-              child: Container(
+              scale:1.2,
+                          child: Container(
                 child: SvgPicture.asset(
                   'assets/images/dhaka.svg',
-                  height: h(100),
-                  width: w(100),
+                  
                 ),
               ),
             ),
-            // DistrictButton('Dhaka', dhakacity, 42, 38, null, null),
+             DistrictButton('Dhaka', dhakacity, 0.05, 0.07),
             // DistrictButton('Gazipur', gazipur, 47, 25, null, null),
             // DistrictButton('Tangail', tangail, 25, 17, null, null),
             // DistrictButton('Kishoreganj', kishoreganj, null, 18, 2, null),
