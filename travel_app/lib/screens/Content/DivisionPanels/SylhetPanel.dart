@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import '../../../SizeConfig.dart';
 import '../ClassesData.dart';
+import 'package:travel_app/SizeConfig.dart';
 import '../CustomDistrictButton.dart';
 
 class PanelSylhet extends StatefulWidget {
@@ -19,8 +19,23 @@ var sunamganj = new Districts("sunamganj", false);
 class _PanelSylhetState extends State<PanelSylhet> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Center(
+    return Padding(
+      padding: const EdgeInsets.only(top: 30),
+      child: Container(
+        height: h(75) * .95,
+        width: h(75) * .95 * .65,
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black45,
+            ),
+            BoxShadow(
+              color: Colors.white,
+              spreadRadius: -1.0,
+              blurRadius: 1.0,
+            ),
+          ],
+        ),
         child: Stack(
           children: <Widget>[
             SvgPicture.asset(
@@ -28,7 +43,7 @@ class _PanelSylhetState extends State<PanelSylhet> {
               height: h(100),
               width: w(100),
             ),
-            // DistrictButton('Sylhet', sylhetcity, null, 24, 26, null),
+             DistrictButton('Sylhet', sylhetcity,.4,-.35),
             // DistrictButton('Habiganj', habiganj, null, 41, 51, null),
             // DistrictButton('Moulvibazar', moulvibazar, null, 38, 27, null),
             // DistrictButton('Sunamganj', sunamganj, null, 24, 54, null),

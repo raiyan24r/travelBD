@@ -100,6 +100,7 @@ class _HomeMapState extends State<HomeMap> {
                   child: FlatButton(
                     onPressed: () {
                       setState(() {
+                        print("close");
                         _pc.close();
                       });
                     },
