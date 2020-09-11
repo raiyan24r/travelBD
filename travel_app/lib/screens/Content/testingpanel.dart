@@ -91,12 +91,11 @@ class _HomeMapState extends State<HomeMap> {
           maxHeight: h(75),
           controller: _pc,
           panel: Container(
-            
             //color: Colors.red,
             child: Stack(
               children: <Widget>[
                 Align(
-                  alignment: Alignment(0,-1.05),
+                  alignment: Alignment(0, -1.05),
                   child: FlatButton(
                     onPressed: () {
                       setState(() {
@@ -104,13 +103,11 @@ class _HomeMapState extends State<HomeMap> {
                         _pc.close();
                       });
                     },
-                    child: Icon(Icons.keyboard_arrow_down,size:40),
+                    child: Icon(Icons.keyboard_arrow_down, size: 40),
                   ),
                 ),
                 Align(
-                    alignment: Alignment.center,
-                    child: divListPanel[divIndex]),
-                
+                    alignment: Alignment.center, child: divListPanel[divIndex]),
               ],
             ),
           ),
@@ -187,7 +184,10 @@ class _HomeMapState extends State<HomeMap> {
             Icons.add,
             color: Colors.white,
           ),
-          onPressed: () {},
+          onPressed: () {
+            print(ctgDIV.visitedDistricts);
+            Navigator.of(context).pushNamed('/result');
+          },
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       ),
@@ -257,7 +257,7 @@ class _HomeMapState extends State<HomeMap> {
                                   ctgDiv.ctgVisitedDistricts;
 
                               return Text(
-                                '${ctgDiv.ctgVisitedDistricts}/${ctgDIV.totalDistricts}',
+                                '${ctgDIV.visitedDistricts}/${ctgDIV.totalDistricts}',
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontSize: h(100) * 0.02,
@@ -408,7 +408,7 @@ class _HomeMapState extends State<HomeMap> {
                         child: Consumer<ProviderDivision>(
                             builder: (context, dhakaDiv, child) {
                           dhakaDIV.visitedDistricts =
-                              dhakaDiv.khulnaVisitedDistricts;
+                              dhakaDiv.dhakaVisitedDistricts;
 
                           return Text(
                             "${dhakaDiv.dhakaVisitedDistricts}/${dhakaDIV.totalDistricts}",
@@ -510,7 +510,7 @@ class _HomeMapState extends State<HomeMap> {
                         child: Consumer<ProviderDivision>(
                             builder: (context, sylhetDiv, child) {
                           sylhetDIV.visitedDistricts =
-                              sylhetDiv.mymensinghVisitedDistricts;
+                              sylhetDiv.sylhetVisitedDistricts;
 
                           return Text(
                             "${sylhetDIV.visitedDistricts}/${sylhetDIV.totalDistricts}",
@@ -561,7 +561,7 @@ class _HomeMapState extends State<HomeMap> {
                         child: Consumer<ProviderDivision>(
                             builder: (context, rangpurDiv, child) {
                           rangpurDIV.visitedDistricts =
-                              rangpurDiv.mymensinghVisitedDistricts;
+                              rangpurDiv.rangpurVisitedDistricts;
 
                           return Text(
                             "${rangpurDIV.visitedDistricts}/${rangpurDIV.totalDistricts}",
@@ -612,7 +612,7 @@ class _HomeMapState extends State<HomeMap> {
                         child: Consumer<ProviderDivision>(
                             builder: (context, rajshahiDiv, child) {
                           rajshahiDIV.visitedDistricts =
-                              rajshahiDiv.mymensinghVisitedDistricts;
+                              rajshahiDiv.rajshahiVisitedDistricts;
 
                           return Text(
                             "${rajshahiDIV.visitedDistricts}/${rajshahiDIV.totalDistricts}",

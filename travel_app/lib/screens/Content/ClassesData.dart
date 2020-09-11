@@ -34,6 +34,54 @@ class ProviderDivision with ChangeNotifier {
           }
         }
         break;
+         case 3:
+        {
+          if (checkPrev) {
+           barishalVisitedDistricts = barishalVisitedDistricts + 1;
+          } else {
+            barishalVisitedDistricts = barishalVisitedDistricts - 1;
+          }
+        }
+        break;
+         case 1:
+        {
+          if (checkPrev) {
+           dhakaVisitedDistricts = dhakaVisitedDistricts + 1;
+          } else {
+            dhakaVisitedDistricts = dhakaVisitedDistricts - 1;
+          }
+        }
+        break;
+        case 7:
+        {
+          if (checkPrev) {
+           mymensinghVisitedDistricts = mymensinghVisitedDistricts + 1;
+          } else {
+            mymensinghVisitedDistricts = mymensinghVisitedDistricts - 1;
+          }
+        }
+        break;
+        case 6:
+        {
+          if (checkPrev) {
+           rangpurVisitedDistricts = rangpurVisitedDistricts + 1;
+          } else {
+            rangpurVisitedDistricts = rangpurVisitedDistricts - 1;
+          }
+        }
+        break;
+        case 5:
+        {
+          if (checkPrev) {
+           rajshahiVisitedDistricts = rajshahiVisitedDistricts + 1;
+          } else {
+           rajshahiVisitedDistricts = rajshahiVisitedDistricts - 1;
+          }
+        }
+        break;
+       
+        
+        
 
       default:
         {

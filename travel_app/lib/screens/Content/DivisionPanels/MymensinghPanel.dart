@@ -12,7 +12,10 @@ class PanelMymensingh extends StatefulWidget {
 }
 
 var mymensinghcity = new Districts("mymensingh", false);
-
+var sherpur = new Districts("sherpur", false);
+var jamalpur = new Districts("jamalpur", false);
+var netrokona = new Districts("netrokona", false);
+//var xyzcity = new Districts("xyz", false);
 //      example : var *classname* = new Districts("*districtname", false);
 
 class _PanelMymensinghState extends State<PanelMymensingh> {
@@ -21,30 +24,33 @@ class _PanelMymensinghState extends State<PanelMymensingh> {
     return Padding(
       padding: const EdgeInsets.only(top: 30),
       child: Container(
-        height: h(75) * .95,
-        width: h(75) * .95 * .65,
-        decoration: BoxDecoration(
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black45,
-            ),
-            BoxShadow(
-              color: Colors.white,
-              spreadRadius: -1.0,
-              blurRadius: 1.0,
-            ),
-          ],
-        ),
-          child: Stack(
-        children: <Widget>[
-          SvgPicture.asset(
-            'assets/images/mymensingh.svg',
+          height: h(75) * .95,
+          width: h(75) * .95 * .65,
+          decoration: BoxDecoration(
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black45,
+              ),
+              BoxShadow(
+                color: Colors.white,
+                spreadRadius: -1.0,
+                blurRadius: 1.0,
+              ),
+            ],
           ),
-          DistrictButton('MYMENSINGH', mymensinghcity, -.05,0.1),
-          
-          //DistrictButton('*jei text boshbe', upore classname jeita disi, left theke distance, top, right, bottom),
-        ],
-      )),
+          child: Stack(
+            children: <Widget>[
+              SvgPicture.asset(
+                'assets/images/mymensingh.svg',
+              ),
+              DistrictButton('MYMENSINGH', mymensinghcity, -.05, 0.1),
+              DistrictButton('SHERPUR', sherpur, -0.5, -0.3),
+              DistrictButton('Jamalpur', jamalpur, -0.9, -0.1),
+              DistrictButton('Netrokona', netrokona, 0.6, -0.05),
+              // DistrictButton('pqr', pqrcity, 1, -1),
+              //DistrictButton('*jei text boshbe', upore classname jeita disi, left theke distance, top, right, bottom),
+            ],
+          )),
     );
   }
 }

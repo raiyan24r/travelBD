@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'screens/Authentication/SignIn_Page.dart';
 import 'screens/Content/ClassesData.dart';
-
+import 'screens/Content/result.dart';
 import 'screens/Authentication/RegisterPage.dart';
 //import  'package:flutter/services.dart' ;
 import 'package:device_preview/device_preview.dart';
@@ -43,7 +43,7 @@ class _MyAppState extends State<MyApp> {
        initialRoute: '/home',
         routes: <String, WidgetBuilder>{
           '/home': (BuildContext context) => new HomeMap(),
-          
+          '/result': (BuildContext context) => new ResultPage(),
           '/signin': (BuildContext context) => new SignInPage(),
           '/register': (BuildContext context) => new RegisterPage(),
 

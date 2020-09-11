@@ -12,6 +12,13 @@ class PanelRajshahi extends StatefulWidget {
 }
 
 var rajshahicity = new Districts("rajshahi", false);
+var nawabganj = new Districts("nawabganj", false);
+var naogaon = new Districts("naogaon", false);
+var jaipurhat = new Districts("jaipurhat", false);
+var bogra = new Districts("bogra", false);
+var pabna = new Districts("pabna", false);
+var sirajganj = new Districts("sirajganj", false);
+var natore = new Districts("natore", false);
 
 class _PanelRajshahiState extends State<PanelRajshahi> {
   @override
@@ -39,7 +46,14 @@ class _PanelRajshahiState extends State<PanelRajshahi> {
               SvgPicture.asset(
                 'assets/images/rajshahi.svg',
               ),
-              DistrictButton('RAJSHAHI', rajshahicity,-.3,.1),
+              DistrictButton('RAJSHAHI', rajshahicity, -.3, .1),
+              DistrictButton('NAWABGANJ', nawabganj, -.9, -.1),
+              DistrictButton('NAOGAON', naogaon, -.2, -.3),
+              DistrictButton('JAIPURHAT', jaipurhat, .2, -.42),
+              DistrictButton('BOGRA', bogra, .58, -.2),
+              DistrictButton('PABNA', pabna, .58, .4),
+              DistrictButton('SIRAJGANJ', sirajganj, .79, .175),
+              DistrictButton('NATORE', natore, .2, .175),
             ],
           )),
         ));
