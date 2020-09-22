@@ -58,28 +58,14 @@ class _HomeMapState extends State<HomeMap> {
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
+          centerTitle: true,
           backgroundColor: Color(0Xffb22020),
-          actions: <Widget>[
-            PopupMenuButton<String>(
-              onSelected: choiceAction,
-              itemBuilder: (BuildContext context) {
-                return Constants.choices.map((String choice) {
-                  return PopupMenuItem<String>(
-                    value: choice,
-                    child: Text(choice),
-                  );
-                }).toList();
-              },
-            ),
-          ],
-          title: Center(
-            child: Text(w(100).toString(),
-                style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.white,
-                ),
-                textAlign: TextAlign.center),
-          ),
+          title: Text("Jajabor",
+              style: TextStyle(
+                fontSize: 20,
+                color: Colors.white,
+              ),
+              textAlign: TextAlign.center),
         ),
         body: SlidingUpPanel(
           borderRadius: BorderRadius.only(
@@ -103,7 +89,12 @@ class _HomeMapState extends State<HomeMap> {
                         _pc.close();
                       });
                     },
-                    child: Icon(Icons.keyboard_arrow_down, size: 40),
+                    child: Column(
+                      children: [
+                        SizedBox(height: 2),
+                        Icon(Icons.keyboard_arrow_down, size: 50),
+                      ],
+                    ),
                   ),
                 ),
                 Align(
@@ -120,30 +111,39 @@ class _HomeMapState extends State<HomeMap> {
         drawer: Drawer(
           child: ListView(
             padding: EdgeInsets.zero,
-            children: const <Widget>[
+            children: <Widget>[
               DrawerHeader(
-                decoration: BoxDecoration(
-                  color: Color(0Xffb22020),
-                ),
-                child: Text(
-                  'your name\n40% complete',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 24,
+                  decoration: BoxDecoration(
+                    color: Color(0Xffb22020),
                   ),
-                ),
+                  child: SizedBox(height: 50)),
+              ListTile(
+                leading: Icon(Icons.train),
+                title: Text('Transportation'),
+                onTap: () {
+                  Navigator.of(context).pushNamed('/transport');
+                },
               ),
               ListTile(
-                leading: Icon(Icons.message),
-                title: Text('Messages'),
+                leading: Icon(Icons.edit),
+                title: Text('Blogs'),
+                onTap: () {
+                  Navigator.of(context).pushNamed('/blogs');
+                },
               ),
               ListTile(
-                leading: Icon(Icons.account_circle),
-                title: Text('Profile'),
+                leading: Icon(Icons.monetization_on),
+                title: Text('Budget Planner'),
+                onTap: () {
+                  //Navigator.of(context).pushNamed('/transport');
+                },
               ),
               ListTile(
-                leading: Icon(Icons.settings),
-                title: Text('Settings'),
+                leading: Icon(Icons.monetization_on),
+                title: Text('Design a Tshirt'),
+                onTap: () {
+                  Navigator.of(context).pushNamed('/Tshirt');
+                },
               ),
             ],
           ),
@@ -161,27 +161,31 @@ class _HomeMapState extends State<HomeMap> {
                 onPressed: () {},
               ),
               IconButton(
-                icon: Icon(Icons.directions_boat),
+                icon: Icon(Icons.train),
+                color: Color(0Xffb22020),
+                onPressed: () {
+                  Navigator.of(context).pushNamed('/transport');
+                },
+              ),
+              IconButton(
+                icon: Icon(Icons.monetization_on),
                 color: Color(0Xffb22020),
                 onPressed: () {},
               ),
               IconButton(
-                icon: Icon(Icons.wrap_text),
+                icon: Icon(Icons.edit_location),
                 color: Color(0Xffb22020),
-                onPressed: () {},
-              ),
-              IconButton(
-                icon: Icon(Icons.location_on),
-                color: Color(0Xffb22020),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).pushNamed('/blogs');
+                },
               ),
             ],
           ),
         ),
         floatingActionButton: FloatingActionButton(
-          backgroundColor: Color(0Xffb22020),
+          backgroundColor: Colors.green,
           child: Icon(
-            Icons.add,
+            Icons.check,
             color: Colors.white,
           ),
           onPressed: () {
@@ -220,6 +224,30 @@ class _HomeMapState extends State<HomeMap> {
               'assets/images/BDMapv2.svg',
               // width: w(95),
               // height: w(95) * 1.30,
+            ),
+          ),
+          Align(
+            alignment: Alignment(1, -0.98),
+            child: Text(
+              "SELECT THE PLACES YOU'VE VISITED",
+              style: TextStyle(
+                fontSize: 13,
+                color: Colors.black,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+          ),
+          Align(
+            alignment: Alignment(0, 0.85),
+            child: Text(
+              "CONFIRM",
+              style: GoogleFonts.raleway(
+                textStyle: TextStyle(
+                  fontSize: 15,
+                  color: Colors.green,
+                  fontWeight: FontWeight.w800,
+                ),
+              ),
             ),
           ),
           // ANCHOR Ctg

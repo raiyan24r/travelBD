@@ -79,6 +79,15 @@ class ProviderDivision with ChangeNotifier {
           }
         }
         break;
+        case 0:
+        {
+          if (checkPrev) {
+           sylhetVisitedDistricts = sylhetVisitedDistricts + 1;
+          } else {
+           sylhetVisitedDistricts = sylhetVisitedDistricts - 1;
+          }
+        }
+        break;
        
         
         

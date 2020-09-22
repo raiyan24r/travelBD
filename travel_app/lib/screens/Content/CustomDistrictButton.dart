@@ -65,6 +65,7 @@ class _DistrictButtonState extends State<DistrictButton> {
       else if (divIndex == 5) {
        rajshahiDiv.buttonPress(divIndex,widget.disName.isVisited);
       }
+  
             }),
             
           },
