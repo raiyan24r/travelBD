@@ -47,8 +47,8 @@ class _MyAppState extends State<MyApp> {
         routes: <String, WidgetBuilder>{
           '/home': (BuildContext context) => new HomeMap(),
           '/result': (BuildContext context) => new ResultPage(),
-          '/signin': (BuildContext context) => new SignInPage(),
-          '/register': (BuildContext context) => new RegisterPage(),
+          // '/signin': (BuildContext context) => new SignInPage(),
+          // '/register': (BuildContext context) => new RegisterPage(),
            '/transport': (BuildContext context) => new Transport(),
            '/blogs': (BuildContext context) => new CarouselDemo(),
            '/Tshirt': (BuildContext context) => new Tshirt(),
